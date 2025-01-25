@@ -4,3 +4,11 @@ spring:
 
 server:
   port: 8080
+
+google:
+  search:
+    uri: https://www.googleapis.com/customsearch/v1
+  api:
+    key: AIzaSyA5UP26653TljfKQacz4F1bK2pXpj5Uqi8
+  engine:
+    id: 3056bd8885c34423c
