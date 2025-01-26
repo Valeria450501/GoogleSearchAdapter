@@ -3,7 +3,7 @@ package com.task.google.search.adapter.service;
 import com.task.google.search.adapter.config.GoogleSearchAppConfig;
 import com.task.google.search.adapter.dto.SearchResponseDto;
 import com.task.google.search.adapter.exception.GoogleResponseFormatException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.task.google.search.adapter.mapper.SearchResponseItemMapper.mapToSearchDto;
+
 @Service
+@AllArgsConstructor
 public class GoogleSearchService {
 
-    @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
     private GoogleSearchAppConfig config;
 
     private static final String URL_PARAM_KEY           = "key";
