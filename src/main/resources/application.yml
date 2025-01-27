@@ -12,3 +12,7 @@ google:
     key: AIzaSyA5UP26653TljfKQacz4F1bK2pXpj5Uqi8
   engine:
     id: 3056bd8885c34423c
+
+springdoc:
+  swagger-ui:
+    path:/swagger-ui.html

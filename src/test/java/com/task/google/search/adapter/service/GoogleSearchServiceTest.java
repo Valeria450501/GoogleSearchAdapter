@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class GoogleSearchServiceTest {
+public class GoogleSearchServiceTest {
 
     public static final String WIKI_TEST_RESPONSE_URL = "https://en.wikipedia.org/wiki/Wiki";
     public static final String WIKI_RESPONSE_DESCRIPTION = "Wikis are powered by wiki software, also known as wiki engines. Being a form of content management system, these differ from other web-based systems such as ...";
@@ -91,7 +91,7 @@ class GoogleSearchServiceTest {
                 "Empty google response should be handled by calling proper exception");
     }
 
-    private ResponseEntity<LinkedHashMap> getCorrectResponse() {
+    public static ResponseEntity<LinkedHashMap> getCorrectResponse() {
         return new ResponseEntity<>(new LinkedHashMap<>() {{
             put("items", new ArrayList<>() {{
                 add(new LinkedHashMap() {{
