@@ -11,7 +11,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Objects;
 
 import static com.task.google.search.adapter.mapper.SearchResponseItemMapper.mapToSearchDto;
 
@@ -33,14 +32,19 @@ public class GoogleSearchService {
     public SearchResponseDto searchByQuery(String searchQuery) {
         ResponseEntity<LinkedHashMap> response = restTemplate.getForEntity(getSearchUrl(searchQuery), LinkedHashMap.class);
 
-        if (Objects.requireNonNull(response.getBody()).get("items") instanceof List<?> items) {
+        if (isSuccessfulResponse(response) && response.getBody().get("items") instanceof List<?> items) {
             return mapToSearchDto(items);
         }
 
         throw new GoogleResponseFormatException();
     }
 
-    private String getSearchUrl(String searchQuery) {
+    private boolean isSuccessfulResponse(ResponseEntity<LinkedHashMap> response) {
+        return response != null && response.getStatusCode().is2xxSuccessful()
+                && response.getBody() != null;
+    }
+
+    protected String getSearchUrl(String searchQuery) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(config.getSearchUrl())
                 .queryParam(URL_PARAM_KEY, config.getApiKey())
                 .queryParam(URL_PARAM_ENGINE_ID, config.getEngineId())
